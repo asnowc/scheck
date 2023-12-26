@@ -13,7 +13,7 @@ const serverCmd = new Command("server")
     return server.finished;
   });
 
-const cmd = new Command("").version("0.0.2");
+const cmd = new Command("").version("0.0.3");
 
 cmd.addCommand(clientCmd);
 cmd.addCommand(serverCmd);

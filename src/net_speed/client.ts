@@ -41,7 +41,7 @@ export async function startTestDownloadSpeed(link: string) {
   }
   const downloadTime = (toTime - formTime) / 1000;
   const downloadSize = process - csize;
-  console.log(`期间下载：${autoUnit.byte(downloadSize)}. 计算时间：${downloadTime}ms`);
+  console.log(`期间下载：${autoUnit.byte(downloadSize)}. 计算时间：${downloadTime} s`);
 
   console.log(autoUnit.byte(downloadSize / downloadTime) + "/s");
 }
