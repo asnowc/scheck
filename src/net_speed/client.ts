@@ -11,30 +11,37 @@ export async function startTestDownloadSpeed(link: string) {
   const length = data.headers.get("content-length");
   console.log("总大小：" + autoUnit.byte(+length!));
 
-  let process = 0;
   const startTime = Date.now();
   const formS = 2;
   const toS = 5;
 
-  const form = formS * 1000;
-  const to = toS * 1000 + form;
-  console.log(`${formS} s 后开始统计, 统计总时长 ${toS - formS} s`);
+  console.log(`${formS} s 后开始统计, 统计总时长 ${toS} s`);
+
+  let formTime = formS * 1000 + startTime;
+  let toTime = toS * 1000 + formTime;
+  let process = 0;
 
   let csize = 0; //开始统计时已传输的大小
   for await (const chunk of data.body) {
     process += chunk.byteLength;
     let current = Date.now();
-    if (current - startTime > form) {
+    if (current >= formTime) {
       if (csize === 0) {
         console.log("开始统计", autoUnit.byte(process));
         csize = process;
+        formTime = current;
       }
-      if (current - startTime > to) {
+      if (current > toTime) {
         console.log("结束", autoUnit.byte(process));
+        toTime = current;
 
         break;
       }
     }
   }
-  console.log(autoUnit.byte((process - csize) / (toS - formS)) + "/s");
+  const downloadTime = (toTime - formTime) / 1000;
+  const downloadSize = process - csize;
+  console.log(`期间下载：${autoUnit.byte(downloadSize)}. 计算时间：${downloadTime}ms`);
+
+  console.log(autoUnit.byte(downloadSize / downloadTime) + "/s");
 }
