@@ -4,6 +4,7 @@
     "specifiers": {
       "npm:commander": "npm:commander@11.1.0",
       "npm:commander@11": "npm:commander@11.1.0",
+      "npm:evlib": "npm:evlib@1.3.0",
       "npm:evlib@1.3.0": "npm:evlib@1.3.0",
       "npm:evlib@1.3.x": "npm:evlib@1.3.0"
     },
