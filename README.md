@@ -3,12 +3,12 @@
 #### 下载速度测试
 
 ```shell
-deno run --allow-net https://esm.sh/gh/eavidy/scheck/net_speed.ts client http://xxx.xx
+deno run --allow-net 'https://esm.sh/gh/eavidy/scheck/net_speed.ts?raw' client http://xxx.xx
 
 ```
 
 #### 上传速度测试
 
 ```shell
-deno run --allow-net https://esm.sh/gh/eavidy/scheck/net_speed.ts server
+deno run --allow-net 'https://esm.sh/gh/eavidy/scheck/net_speed.ts?raw' server
 ```
